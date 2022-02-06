@@ -16,7 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Data
-@Table(name = "guide")
+@Table(name = "excursions")
 public class ExcursionEntity {
 
     @Id

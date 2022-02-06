@@ -52,6 +52,8 @@ public class GuideEntity {
      * Фото экскурсовода
      */
     @Column(name = "photo")
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] photo;
 
     /**

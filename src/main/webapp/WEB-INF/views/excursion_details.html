@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Экскурсия</title>
+</head>
+<body>
+<header class="mb-auto">
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a href="index.html" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                     stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                </svg>
+                <strong>Экскурсионное бюро</strong>
+            </a>
+            <ul class="nav nav-pills">
+                <li><a href="index.html" class="nav-link px-2 text-white">Начальная страница</a></li>
+                <li><a href="excursions.html" class="nav-link px-2 text-secondary">Экскурсии</a></li>
+                <li><a href="cities.html" class="nav-link px-2 text-white">Города</a></li>
+                <li><a href="guides.html" class="nav-link px-2 text-white">Экскурсоводы</a></li>
+                <li><a href="about.html" class="nav-link px-2 text-white">О нас</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="container marketing">
+    <div class="container col-xxl-12 px-6 py-5">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Московские необычные места</h2>
+                <p class="lead">Узнайте о таких местах Российской столицы, о которых вы никогда бы не подумали!<br>
+                    <strong>Необычные места: </strong>Необычное место 1, необычное место 2, необычное место 3...<br>
+                <strong>Дата проведения экскурсии: </strong>10.02.2022<br><br><br>
+                Запись на экскурсию осуществляется по телефону +78005553247 или по email excursions@gmail.com</p>
+            </div>
+            <div class="col-md-5">
+                <img src="pictures/moscow.jpg" alt="Город" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-warning" onclick="openForm(modalChangeExcursion)">
+        Редактировать экскурсию
+    </button>
+    <button type="button" class="btn btn-sm btn-outline-danger" onclick="openForm(modalDeleteExcursion)">
+        Удалить экскурсию
+    </button>
+    <div class="modal py-5" tabindex="-1" role="dialog" id="modalDeleteExcursion">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-body p-4 text-center">
+                    <h5 class="mb-0">Вы действительно хотите удалить город?</h5>
+                    <p class="mb-0">Данное действие невозможно будет отменить.</p>
+                </div>
+                <div class="modal-footer flex-nowrap p-0">
+                    <button type="button" class="btn btn-sm btn-danger btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0
+                      data-bs-dismiss=modal"><strong>Удалить</strong></button>
+                    <button type="button" class="btn btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0"
+                            data-bs-dismiss="modal" onclick="closeForm(modalDeleteExcursion)">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal py-5" tabindex="-1" id="modalChangeExcursion">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-5 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h2 class="fw-bold mb-0">Редактировать экскурсию</h2>
+                    <button type="button" id="close" class="btn-close" onclick="closeForm(modalChangeExcursion)"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-5 pt-0">
+                    <form class="">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="inp form-control rounded-4" id="floatingName"
+                                   placeholder="Name" maxlength="100">
+                            <label for="floatingName">Наименование</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control rounded-4 inp" id="floatingDesc" placeholder="desc"
+                                      rows="10" maxlength="1000"></textarea>
+                            <label for="floatingDesc">Описание</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control rounded-4" id="floatingDate"
+                                   placeholder="2000-06-02">
+                            <label for="floatingDate">Дата проведения</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control rounded-4" list="cityList" id="cityInputList"
+                                   placeholder="Нажмите для открытия списка...">
+                            <label for="cityInputList">Город</label>
+                            <datalist id="cityList">
+                                <option value="Москва">
+                                <option value="Белокуриха">
+                                <option value="Ялта">
+                                <option value="Волгоград">
+                                <option value="Владивосток">
+                                <option value="Петропавловск-Камчатский">
+                            </datalist>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control rounded-4" list="guideList" id="guideInputList"
+                                   placeholder="Нажмите для открытия списка...">
+                            <label for="guideInputList">Экскурсовод</label>
+                            <datalist id="guideList">
+                                <option value="Виктор Андреев">
+                                <option value="Оксана Симонова">
+                                <option value="Федор Конюхов">
+                                <option value="Антон Птушкин">
+                            </datalist>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-warning" type="submit">Редактировать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="text-muted py-5">
+    <div class="container">
+        <p class="mb-1">Экскурсии по необычным местам городов России и стран СНГ</p>
+        <p class="mb-0">Since 2022</p>
+    </div>
+</footer>
+<script src="js/modalFormScripts.js"></script>
+</body>
+</html>
+
+

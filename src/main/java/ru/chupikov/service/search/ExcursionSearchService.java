@@ -1,8 +1,8 @@
-package ru.lab2.service.search;
+package ru.chupikov.service.search;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.lab2.dao.ExcursionRepository;
+import ru.chupikov.dao.ExcursionRepository;
 
 /**
  * Сервис с операциями поиска для экскурсий

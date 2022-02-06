@@ -1,4 +1,4 @@
-package ru.lab2.entity;
+package ru.chupikov.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

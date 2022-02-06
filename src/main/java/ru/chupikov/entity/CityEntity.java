@@ -1,4 +1,4 @@
-package ru.lab2.entity;
+package ru.chupikov.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,50 +6,43 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 /**
- * Сущность экскурсовода
+ * Сущность города
  */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-@Table(name = "guide")
-public class GuideEntity {
+@Table(name = "city")
+public class CityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     /**
-     * Имя экскурсовода
+     * Наименование города
      */
     @Column(name = "name", nullable = false)
     private String name;
 
     /**
-     * Фамилия экскурсовода
-     */
-    @Column(name = "surname", nullable = false)
-    private String surname;
-
-    /**
-     * Дата рождения
-     */
-    @Column(name = "birthdate", nullable = false)
-    private Date birthdate;
-
-    /**
-     * Описание экскурсовода
+     * Описание города
      */
     @Column(name = "description")
     private String description;
 
     /**
-     * Фото экскурсовода
+     * Список необычных мест
+     */
+    @Column(name = "places_list", nullable = false)
+    private String places;
+
+    /**
+     * Фото города
      */
     @Column(name = "photo")
     private byte[] photo;
@@ -57,7 +50,7 @@ public class GuideEntity {
     /**
      * Связь один-ко-многим с экскурсиями
      */
-    @OneToMany(mappedBy = "guide")
+    @OneToMany(mappedBy = "city")
     List<ExcursionEntity> excursions;
 
 }

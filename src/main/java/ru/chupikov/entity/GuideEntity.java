@@ -27,13 +27,13 @@ public class GuideEntity {
     /**
      * Имя экскурсовода
      */
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
 
     /**
      * Фамилия экскурсовода
      */
-    @Column(name = "surname", nullable = false)
+    @Column(name = "surname", nullable = false, length = 50)
     private String surname;
 
     /**
@@ -45,7 +45,7 @@ public class GuideEntity {
     /**
      * Описание экскурсовода
      */
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition="TEXT")
     private String description;
 
     /**

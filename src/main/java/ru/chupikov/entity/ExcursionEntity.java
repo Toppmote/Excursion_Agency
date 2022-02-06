@@ -26,13 +26,13 @@ public class ExcursionEntity {
     /**
      * Наименование экскурсии
      */
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
     /**
      * Описание экскурсии
      */
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition="TEXT")
     private String description;
 
     /**

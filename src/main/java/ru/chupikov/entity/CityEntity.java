@@ -26,19 +26,19 @@ public class CityEntity {
     /**
      * Наименование города
      */
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
     /**
      * Описание города
      */
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition="TEXT")
     private String description;
 
     /**
      * Список необычных мест
      */
-    @Column(name = "places_list", nullable = false)
+    @Column(name = "places_list", nullable = false, columnDefinition="TEXT")
     private String places;
 
     /**

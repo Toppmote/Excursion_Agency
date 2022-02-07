@@ -14,7 +14,7 @@
 <header>
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
                      stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
@@ -24,11 +24,11 @@
                 <strong>Экскурсионное бюро</strong>
             </a>
             <ul class="nav nav-pills">
-                <li><a href="index.html" class="nav-link px-2 text-white">Начальная страница</a></li>
-                <li><a href="excursions.html" class="nav-link px-2 text-white">Экскурсии</a></li>
-                <li><a href="cities.html" class="nav-link px-2 text-white">Города</a></li>
+                <li><a href="/" class="nav-link px-2 text-white">Начальная страница</a></li>
+                <li><a href="/excursions" class="nav-link px-2 text-white">Экскурсии</a></li>
+                <li><a href="/cities" class="nav-link px-2 text-white">Города</a></li>
                 <li><a href="#" class="nav-link px-2 text-secondary">Экскурсоводы</a></li>
-                <li><a href="about.html" class="nav-link px-2 text-white">О нас</a></li>
+                <li><a href="/about" class="nav-link px-2 text-white">О нас</a></li>
             </ul>
         </div>
     </div>
@@ -46,12 +46,12 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col px-2">
                     <div class="card shadow-sm">
-                        <img src="pictures/viktor_andreev.jpg" alt="Виктор" class="img-fluid">
+                        <img src="../static/pictures/viktor_andreev.jpg" alt="Виктор" class="img-fluid">
                         <div class="card-body">
                             <p class="card-text">Виктор Андреев</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+                                    <button type="button" class="btn btn-sm btn-outline-info">Подробнее</button>
                                 </div>
                             </div>
                         </div>
@@ -59,12 +59,12 @@
                 </div>
                 <div class="col px-2">
                     <div class="card shadow-sm">
-                        <img src="pictures/oksana_simonova.jpg" alt="Оксана" class="img-fluid">
+                        <img src="../static/pictures/oksana_simonova.jpg" alt="Оксана" class="img-fluid">
                         <div class="card-body">
                             <p class="card-text">Оксана Симонова</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+                                    <button type="button" class="btn btn-sm btn-outline-info">Подробнее</button>
                                 </div>
                             </div>
                         </div>
@@ -72,12 +72,12 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img src="pictures/fedor.jpg" alt="Конюхов" class="img-fluid">
+                        <img src="../static/pictures/fedor.jpg" alt="Конюхов" class="img-fluid">
                         <div class="card-body">
                             <p class="card-text">Федор Конюхов</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" onclick="document.location='guide_details.html'" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+                                    <button type="button" onclick="document.location='guide_details.html'" class="btn btn-sm btn-outline-info">Подробнее</button>
                                 </div>
                             </div>
                         </div>
@@ -85,12 +85,12 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img src="pictures/ptushkin.jpg" alt="Птушкин" class="img-fluid">
+                        <img src="../static/pictures/ptushkin.jpg" alt="Птушкин" class="img-fluid">
                         <div class="card-body">
                             <p class="card-text">Антон Птушкин</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+                                    <button type="button" class="btn btn-sm btn-outline-info">Подробнее</button>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img src="pictures/empty.jpg" alt="Добавить" class="img-fluid">
+                        <img src="../static/pictures/empty.jpg" alt="Добавить" class="img-fluid">
                         <div class="card-body">
                             <p class="card-text">Добавьте нового экскурсовода</p>
                             <div class="d-flex justify-content-between align-items-center">
@@ -162,7 +162,7 @@
         <p class="mb-0">Since 2022</p>
     </div>
 </footer>
-<script src="js/modalFormScripts.js"></script>
+<script src="/js/modalFormScripts.js"></script>
 </body>
 </html>
 

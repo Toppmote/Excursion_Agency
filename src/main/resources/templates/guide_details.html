@@ -39,10 +39,11 @@
             <div class="col-md-7">
                 <h2 class="featurette-heading" th:utext="${guide.getName() + ' ' + guide.getSurname()}"></h2>
                 <p class="lead"><span th:utext="${guide.getDescription()}"></span><br>
-                <strong>Дата рождения: </strong><span th:utext="${guide.getBirthdate()}"></span></p>
+                <strong>Дата рождения: </strong><span th:utext="${prettyBirthdate}"></span></p>
             </div>
             <div class="col-md-5">
-                <img src="/pictures/fedor.jpg" alt="Экскурсовод" class="img-fluid">
+                <img th:src="'data:image/jpeg;base64,' + ${imgConverter.byteToBase64(guide.getPhoto())}"
+                     alt="Экскурсовод" class="img-fluid">
             </div>
         </div>
     </div>

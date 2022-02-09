@@ -43,7 +43,8 @@
                     <span th:utext="${city.getPlaces()}"></span></p>
             </div>
             <div class="col-md-5">
-                <img src="/pictures/blk.jpg" alt="Город" class="img-fluid">
+                <img th:src="'data:image/jpeg;base64,' + ${imgConverter.byteToBase64(city.getPhoto())}"
+                     alt="Город" class="img-fluid">
             </div>
         </div>
     </div>

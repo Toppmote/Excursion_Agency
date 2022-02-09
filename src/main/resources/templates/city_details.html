@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
 <header class="mb-auto">
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
                      stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
@@ -24,11 +24,11 @@
                 <strong>Экскурсионное бюро</strong>
             </a>
             <ul class="nav nav-pills">
-                <li><a href="index.html" class="nav-link px-2 text-white">Начальная страница</a></li>
-                <li><a href="excursions.html" class="nav-link px-2 text-white">Экскурсии</a></li>
-                <li><a href="cities.html" class="nav-link px-2 text-secondary">Города</a></li>
-                <li><a href="guides.html" class="nav-link px-2 text-white">Экскурсоводы</a></li>
-                <li><a href="about.html" class="nav-link px-2 text-white">О нас</a></li>
+                <li><a href="/" class="nav-link px-2 text-white">Начальная страница</a></li>
+                <li><a href="/excursions" class="nav-link px-2 text-white">Экскурсии</a></li>
+                <li><a href="/cities" class="nav-link px-2 text-secondary">Города</a></li>
+                <li><a href="/guides" class="nav-link px-2 text-white">Экскурсоводы</a></li>
+                <li><a href="/about" class="nav-link px-2 text-white">О нас</a></li>
             </ul>
         </div>
     </div>
@@ -37,17 +37,13 @@
     <div class="container col-xxl-12 px-6 py-5">
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Белокуриха</h2>
-                <p class="lead">Характеризуется сравнительно высокой для Сибири среднегодовой температурой воздуха +3°C
-                    . Мягкая зима, нежаркое лето, тёплая погода весенних и осенних месяцев, преимущественно безветренная,
-                    кратковременные заморозки зимой, сменяющиеся частыми оттепелями и постоянство барометрического давления.
-                    Белокурихинские источники являются термальными азотно-кремнистыми радоносодержащими водами, или азотными термами.
-                    Они выходят на поверхность с температурой 30+°C и 42+°C.</p><br>
-                    <p><strong>Необычные места: </strong>
-                        Необычное место 1, необычное место 2, необычное место 3...</p>
+                <h2 class="featurette-heading" th:utext="${city.getName()}"></h2>
+                <p class="lead" th:utext="${city.getDescription()}"></p><br>
+                <p class="lead"><strong>Необычные места: </strong>
+                    <span th:utext="${city.getPlaces()}"></span></p>
             </div>
             <div class="col-md-5">
-                <img src="../static/pictures/blk.jpg" alt="Город" class="img-fluid">
+                <img src="/pictures/blk.jpg" alt="Город" class="img-fluid">
             </div>
         </div>
     </div>
@@ -68,7 +64,8 @@
                     <button type="button" class="btn btn-sm btn-danger btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0
                       data-bs-dismiss=modal"><strong>Удалить</strong></button>
                     <button type="button" class="btn btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0"
-                            data-bs-dismiss="modal" onclick="closeForm(modalDeleteCity)">Отмена</button>
+                            data-bs-dismiss="modal" onclick="closeForm(modalDeleteCity)">Отмена
+                    </button>
                 </div>
             </div>
         </div>
@@ -115,7 +112,7 @@
         <p class="mb-0">Since 2022</p>
     </div>
 </footer>
-<script src="../static/js/modalFormScripts.js"></script>
+<script src="/js/modalFormScripts.js"></script>
 </body>
 </html>
 

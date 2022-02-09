@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -44,65 +44,29 @@
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col px-2">
+                <div class="col" th:each="guide : ${guides}">
                     <div class="card shadow-sm">
-                        <img src="../static/pictures/viktor_andreev.jpg" alt="Виктор" class="img-fluid">
+                        <img src="/pictures/ptushkin.jpg" alt="Экскурсовод" class="img-fluid">
                         <div class="card-body">
-                            <p class="card-text">Виктор Андреев</p>
+                            <p class="card-text" th:utext="${guide.getName() + ' ' + guide.getSurname()}"></p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-info">Подробнее</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col px-2">
-                    <div class="card shadow-sm">
-                        <img src="../static/pictures/oksana_simonova.jpg" alt="Оксана" class="img-fluid">
-                        <div class="card-body">
-                            <p class="card-text">Оксана Симонова</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-info">Подробнее</button>
-                                </div>
+                                <a th:href="@{/guides/{id}(id=${guide.getId()})}">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-info">Подробнее</button>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img src="../static/pictures/fedor.jpg" alt="Конюхов" class="img-fluid">
-                        <div class="card-body">
-                            <p class="card-text">Федор Конюхов</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" onclick="document.location='guide_details.html'" class="btn btn-sm btn-outline-info">Подробнее</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="../static/pictures/ptushkin.jpg" alt="Птушкин" class="img-fluid">
-                        <div class="card-body">
-                            <p class="card-text">Антон Птушкин</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-info">Подробнее</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="../static/pictures/empty.jpg" alt="Добавить" class="img-fluid">
+                        <img src="/pictures/empty.jpg" alt="Добавить" class="img-fluid">
                         <div class="card-body">
                             <p class="card-text">Добавьте нового экскурсовода</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <button type="button" class="btn btn-sm btn-outline-success" onclick="openForm(modalAddGuide)">
+                                <button type="button" class="btn btn-sm btn-outline-success"
+                                        onclick="openForm(modalAddGuide)">
                                     Добавить экскурсовода
                                 </button>
                             </div>
@@ -146,7 +110,9 @@
                                       rows="10" maxlength="1000"></textarea>
                             <label for="floatingDesc">Описание</label>
                         </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Добавить экскурсовода</button>
+                        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Добавить
+                            экскурсовода
+                        </button>
                     </form>
                 </div>
             </div>

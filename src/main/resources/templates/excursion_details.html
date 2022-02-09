@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
 <header class="mb-auto">
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
                      stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
@@ -24,11 +24,11 @@
                 <strong>Экскурсионное бюро</strong>
             </a>
             <ul class="nav nav-pills">
-                <li><a href="index.html" class="nav-link px-2 text-white">Начальная страница</a></li>
-                <li><a href="excursions.html" class="nav-link px-2 text-secondary">Экскурсии</a></li>
-                <li><a href="cities.html" class="nav-link px-2 text-white">Города</a></li>
-                <li><a href="guides.html" class="nav-link px-2 text-white">Экскурсоводы</a></li>
-                <li><a href="about.html" class="nav-link px-2 text-white">О нас</a></li>
+                <li><a href="/" class="nav-link px-2 text-white">Начальная страница</a></li>
+                <li><a href="/excursions" class="nav-link px-2 text-secondary">Экскурсии</a></li>
+                <li><a href="/cities" class="nav-link px-2 text-white">Города</a></li>
+                <li><a href="/guides" class="nav-link px-2 text-white">Экскурсоводы</a></li>
+                <li><a href="/about" class="nav-link px-2 text-white">О нас</a></li>
             </ul>
         </div>
     </div>
@@ -37,14 +37,26 @@
     <div class="container col-xxl-12 px-6 py-5">
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Московские необычные места</h2>
-                <p class="lead">Узнайте о таких местах Российской столицы, о которых вы никогда бы не подумали!<br>
-                    <strong>Необычные места: </strong>Необычное место 1, необычное место 2, необычное место 3...<br>
-                <strong>Дата проведения экскурсии: </strong>10.02.2022<br><br><br>
-                Запись на экскурсию осуществляется по телефону +78005553247 или по email excursions@gmail.com</p>
+                <h2 class="featurette-heading" th:utext="${excursion.getName()}"></h2>
+                <p class="lead" th:utext="${excursion.getDescription()}"></p><br>
+                <p class="lead"><strong>Город: </strong>
+                    <a th:href="@{/cities/{id}(id=${excursion.getCity().getId()})}">
+                        <span th:utext="${excursion.getCity().getName()}"></span>
+                    </a>
+                    <br>
+                    <strong>Необычные места: </strong><span th:utext="${excursion.getCity().getPlaces()}"></span><br>
+                    <strong>Экскурсовод: </strong>
+                    <a th:href="@{/guide/{id}(id=${excursion.getGuide().getId()})}">
+                        <span th:utext="${excursion.getGuide().getName() + ' ' + excursion.getGuide().getSurname()}"></span>
+                    </a>
+                    <br>
+                    <strong>Дата проведения экскурсии: </strong>
+                    <span th:utext="${excursion.getDate()}"></span>
+                    <br><br>
+                    Запись на экскурсию осуществляется по телефону +78005553247 или по email excursions@gmail.com</p>
             </div>
             <div class="col-md-5">
-                <img src="../static/pictures/moscow.jpg" alt="Город" class="img-fluid">
+                <img src="/pictures/moscow.jpg" alt="Город" class="img-fluid">
             </div>
         </div>
     </div>
@@ -65,7 +77,8 @@
                     <button type="button" class="btn btn-sm btn-danger btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0
                       data-bs-dismiss=modal"><strong>Удалить</strong></button>
                     <button type="button" class="btn btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0"
-                            data-bs-dismiss="modal" onclick="closeForm(modalDeleteExcursion)">Отмена</button>
+                            data-bs-dismiss="modal" onclick="closeForm(modalDeleteExcursion)">Отмена
+                    </button>
                 </div>
             </div>
         </div>
@@ -132,7 +145,7 @@
         <p class="mb-0">Since 2022</p>
     </div>
 </footer>
-<script src="../static/js/modalFormScripts.js"></script>
+<script src="/js/modalFormScripts.js"></script>
 </body>
 </html>
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
 <header class="mb-auto">
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
                      stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
@@ -24,11 +24,11 @@
                 <strong>Экскурсионное бюро</strong>
             </a>
             <ul class="nav nav-pills">
-                <li><a href="index.html" class="nav-link px-2 text-white">Начальная страница</a></li>
-                <li><a href="excursions.html" class="nav-link px-2 text-white">Экскурсии</a></li>
-                <li><a href="cities.html" class="nav-link px-2 text-white">Города</a></li>
-                <li><a href="guides.html" class="nav-link px-2 text-secondary">Экскурсоводы</a></li>
-                <li><a href="about.html" class="nav-link px-2 text-white">О нас</a></li>
+                <li><a href="/" class="nav-link px-2 text-white">Начальная страница</a></li>
+                <li><a href="/excursions" class="nav-link px-2 text-white">Экскурсии</a></li>
+                <li><a href="/cities" class="nav-link px-2 text-white">Города</a></li>
+                <li><a href="/guides" class="nav-link px-2 text-secondary">Экскурсоводы</a></li>
+                <li><a href="/about" class="nav-link px-2 text-white">О нас</a></li>
             </ul>
         </div>
     </div>
@@ -37,20 +37,12 @@
     <div class="container col-xxl-12 px-6 py-5">
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Федор Конюхов</h2>
-                <p class="lead">Советский и российский путешественник, писатель, художник, священник Украинской
-                    православной церкви. В одиночку совершил пять кругосветных плаваний, 17 раз пересёк Атлантику, причём
-                    один раз на вёсельной лодке. Первый россиянин, побывавший на всех Семи вершинах, в одиночку на Южном
-                    и Северном полюсах. Обладатель национальной премии «Хрустальный компас»
-                    и мировых рекордов Гиннесса. Первый в мире человек, который достиг пяти полюсов Земли: Северный
-                    географический (три раза), Южный географический, Полюс относительной недоступности в Северном Ледовитом
-                    океане, Эверест (полюс высоты), Мыс Горн (полюс яхтсменов). Первый в России достиг Северного и Южного
-                    полюса на лыжах, первый совершил одиночное кругосветное плавание, первый выполнил программу Семь Вершин,
-                    первый пересёк океан на вёсельной лодке, первый совершил кругосветный полёт на воздушном шаре.<br>
-                <strong>Дата рождения: </strong>12 декабря 1951</p>
+                <h2 class="featurette-heading" th:utext="${guide.getName() + ' ' + guide.getSurname()}"></h2>
+                <p class="lead"><span th:utext="${guide.getDescription()}"></span><br>
+                <strong>Дата рождения: </strong><span th:utext="${guide.getBirthdate()}"></span></p>
             </div>
             <div class="col-md-5">
-                <img src="../static/pictures/fedor.jpg" alt="Экскурсовод" class="img-fluid">
+                <img src="/pictures/fedor.jpg" alt="Экскурсовод" class="img-fluid">
             </div>
         </div>
     </div>
@@ -123,7 +115,7 @@
         <p class="mb-0">Since 2022</p>
     </div>
 </footer>
-<script src="../static/js/modalFormScripts.js"></script>
+<script src="/js/modalFormScripts.js"></script>
 </body>
 </html>
 

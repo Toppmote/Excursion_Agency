@@ -47,7 +47,7 @@ public class CityEntity {
     @Column(name = "photo")
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    private Byte[] photo;
+    private byte[] photo;
 
     /**
      * Связь один-ко-многим с экскурсиями

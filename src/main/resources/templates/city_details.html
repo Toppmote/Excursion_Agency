@@ -63,7 +63,11 @@
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
                     <button type="button" class="btn btn-sm btn-danger btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0
-                      data-bs-dismiss=modal"><strong>Удалить</strong></button>
+                      data-bs-dismiss=modal"><strong>
+                        <a th:href="@{/delete_city/{id}(id=${city.getId()})}">
+                            Удалить
+                        </a>
+                    </strong></button>
                     <button type="button" class="btn btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0"
                             data-bs-dismiss="modal" onclick="closeForm(modalDeleteCity)">Отмена
                     </button>

@@ -31,11 +31,21 @@ public class CityCrudService {
                 .description(cityForm.getDescription())
                 .places(cityForm.getPlaces())
                 .build();
-        if(cityForm.getPhoto().getSize() == 0)
+        if (cityForm.getPhoto().getSize() == 0)
             city.setPhoto(ImgTransformationUtils.getInstance().getByteEmptyPicture());
         else
             city.setPhoto(cityForm.getPhoto().getBytes());
         cityRepository.save(city);
+    }
+
+    /**
+     * Процедура удаления города по ID из БД
+     *
+     * @param id ID удаляемого города
+     */
+    @Transactional
+    public void deleteById(Long id) {
+        cityRepository.deleteById(id);
     }
 
 }

@@ -39,7 +39,7 @@
             <div class="col-md-7">
                 <h2 class="featurette-heading" th:utext="${guide.getName() + ' ' + guide.getSurname()}"></h2>
                 <p class="lead"><span th:utext="${guide.getDescription()}"></span><br>
-                <strong>Дата рождения: </strong><span th:utext="${prettyBirthdate}"></span></p>
+                    <strong>Дата рождения: </strong><span th:utext="${prettyBirthdate}"></span></p>
             </div>
             <div class="col-md-5">
                 <img th:src="'data:image/jpeg;base64,' + ${imgConverter.byteToBase64(guide.getPhoto())}"
@@ -62,9 +62,11 @@
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
                     <button type="button" class="btn btn-sm btn-danger btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0
-                      data-bs-dismiss=modal"><strong>Удалить</strong></button>
+                      data-bs-dismiss=modal">
+                        <a th:href="@{/delete_guide/{id}(id=${guide.getId()})}"><strong>Удалить</strong></a></button>
                     <button type="button" class="btn btn-lg fs-6 text-decoration-none col-6 m-0 rounded-0"
-                            data-bs-dismiss="modal" onclick="closeForm(modalDeleteGuide)">Отмена</button>
+                            data-bs-dismiss="modal" onclick="closeForm(modalDeleteGuide)">Отмена
+                    </button>
                 </div>
             </div>
         </div>

@@ -1,10 +1,7 @@
 package ru.chupikov.controller.crud;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 import ru.chupikov.form.GuideForm;
@@ -22,7 +19,7 @@ public class GuideCrudController {
     /**
      * Метод обработки запроса на сохранение нового экскурсовода
      *
-     * @param guideForm данные о новом экскурсоводе
+     * @param guideForm  данные о новом экскурсоводе
      * @param photoGuide фотография экскурсовода
      * @return редирект на страницу экскурсоводов
      */
@@ -34,7 +31,19 @@ public class GuideCrudController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new RedirectView("guides");
+        return new RedirectView("/guides");
+    }
+
+    /**
+     * Метод обработки запроса на удаление экскурсовода по ID
+     *
+     * @param id ID удаляемого экскурсовода
+     * @return редирект на страницу экскурсоводов
+     */
+    @GetMapping("/delete_guide/{id}")
+    public RedirectView deleteGuide(@PathVariable Long id) {
+        guideCrudService.deleteById(id);
+        return new RedirectView("/guides");
     }
 
 }

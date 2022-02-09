@@ -1,10 +1,7 @@
 package ru.chupikov.controller.crud;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 import ru.chupikov.form.CityForm;
@@ -22,9 +19,9 @@ public class CityCrudController {
     /**
      * Метод обработки запроса на сохранение нового города
      *
-     * @param cityForm данные о новом городе
+     * @param cityForm  данные о новом городе
      * @param photoCity фотография города
-     * @return редирект на страницу
+     * @return редирект на страницу городов
      */
     @PostMapping("/add_city")
     public RedirectView addCity(@ModelAttribute CityForm cityForm, @RequestParam("photoCity") MultipartFile photoCity) {
@@ -34,7 +31,19 @@ public class CityCrudController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new RedirectView("cities");
+        return new RedirectView("/cities");
+    }
+
+    /**
+     * Метод обработки запроса на удаление города по ID
+     *
+     * @param id ID удаляемого города
+     * @return редирект на страницу городов
+     */
+    @GetMapping("/delete_city/{id}")
+    public RedirectView deleteCity(@PathVariable Long id) {
+        cityCrudService.deleteById(id);
+        return new RedirectView("/cities");
     }
 
 }

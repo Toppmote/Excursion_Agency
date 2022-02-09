@@ -40,11 +40,21 @@ public class GuideCrudService {
             e.printStackTrace();
             guide.setBirthdate(new Date());
         }
-        if(guideForm.getPhoto().getSize() == 0)
+        if (guideForm.getPhoto().getSize() == 0)
             guide.setPhoto(ImgTransformationUtils.getInstance().getByteEmptyPicture());
         else
             guide.setPhoto(guideForm.getPhoto().getBytes());
         guideRepository.save(guide);
+    }
+
+    /**
+     * Процедура удаления экскурсовода по ID
+     *
+     * @param id ID экскурсовода
+     */
+    @Transactional
+    public void deleteById(Long id) {
+        guideRepository.deleteById(id);
     }
 
 }

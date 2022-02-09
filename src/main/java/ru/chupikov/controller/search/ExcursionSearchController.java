@@ -45,12 +45,12 @@ public class ExcursionSearchController {
     /**
      * Метод загрузки страницу конкретной экскурсии с требуемым id
      *
-     * @param id id экскурсии
+     * @param id    id экскурсии
      * @param model модель для передачи данных на страницу
      * @return страница
      */
     @GetMapping("/excursions/{id}")
-    public String loadExcursionDetailsPage(@PathVariable Long id, Model model){
+    public String loadExcursionDetailsPage(@PathVariable Long id, Model model) {
         model.addAttribute("excursion", excursionSearchService.findById(id));
         return "excursion_details";
     }

@@ -47,7 +47,8 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col" th:each="city : ${cities}">
                     <div class="card shadow-sm">
-                        <img th:src="'data:image/jpeg;base64,' + ${imgConverter.byteToBase64(city.getPhoto())}" alt="Город"
+                        <img th:src="'data:image/jpeg;base64,' + ${imgConverter.byteToBase64(city.getPhoto())}"
+                             alt="Город"
                              class="img-fluid">
                         <div class="card-body">
                             <p class="card-text" th:utext="${city.getName()}"></p>
@@ -87,7 +88,8 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5 pt-0">
-                    <form class="" action="#" th:action="@{/add_city}" th:object="${cityForm}" enctype="multipart/form-data"
+                    <form class="" action="#" th:action="@{/add_city}" th:object="${cityForm}"
+                          enctype="multipart/form-data"
                           method="post">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control rounded-4" id="floatingName"
@@ -96,7 +98,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="photoCity">Фотография</label>
-                            <input class="form-control" type="file" id="photoCity" name="photoCity" accept="image/png, image/jpeg">
+                            <input class="form-control" type="file" id="photoCity" name="photoCity"
+                                   accept="image/png, image/jpeg">
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control rounded-4" id="floatingDesc" placeholder="desc"

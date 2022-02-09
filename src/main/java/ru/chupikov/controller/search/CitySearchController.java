@@ -39,12 +39,12 @@ public class CitySearchController {
     /**
      * Метод загрузки страницу конкретного города с требуемым id
      *
-     * @param id id города
+     * @param id    id города
      * @param model модель для передачи данных на страницу
      * @return страница города
      */
     @GetMapping("/cities/{id}")
-    public String loadCitiesDetailsPage(@PathVariable Long id, Model model){
+    public String loadCitiesDetailsPage(@PathVariable Long id, Model model) {
         model.addAttribute("city", citySearchService.findById(id));
         model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());
         return "city_details";

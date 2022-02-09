@@ -86,7 +86,8 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5 pt-0">
-                    <form class="" action="#" th:action="@{/add_guide}" th:object="${guideForm}" enctype="multipart/form-data"
+                    <form class="" action="#" th:action="@{/add_guide}" th:object="${guideForm}"
+                          enctype="multipart/form-data"
                           method="post">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control rounded-4" id="floatingName"
@@ -105,7 +106,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="photoGuide">Фотография</label>
-                            <input class="form-control" type="file" id="photoGuide" placeholder="Photo" name="photoGuide">
+                            <input class="form-control" type="file" id="photoGuide" placeholder="Photo"
+                                   name="photoGuide">
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control rounded-4" id="floatingDesc" placeholder="desc"

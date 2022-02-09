@@ -32,7 +32,7 @@ public class ExcursionEntity {
     /**
      * Описание экскурсии
      */
-    @Column(name = "description", columnDefinition="TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     /**
@@ -45,14 +45,14 @@ public class ExcursionEntity {
      * Связь много-к-одному для экскурсовода
      */
     @ManyToOne
-    @JoinColumn(name="guide_id", nullable=false)
+    @JoinColumn(name = "guide_id", nullable = false)
     GuideEntity guide;
 
     /**
      * Связь много-к-одному для города
      */
     @ManyToOne
-    @JoinColumn(name="city_id", nullable=false)
+    @JoinColumn(name = "city_id", nullable = false)
     CityEntity city;
 
 }

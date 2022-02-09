@@ -41,12 +41,12 @@ public class GuideSearchController {
     /**
      * Метод загрузки страницу конкретного экскурсовода с требуемым id
      *
-     * @param id id экскурсовода
+     * @param id    id экскурсовода
      * @param model модель для передачи данных на страницу
      * @return страница экскурсовода
      */
     @GetMapping("/guides/{id}")
-    public String loadGuideDetailsPage(@PathVariable Long id, Model model){
+    public String loadGuideDetailsPage(@PathVariable Long id, Model model) {
         GuideEntity guide = guideSearchService.findById(id);
         model.addAttribute("guide", guide);
         model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());

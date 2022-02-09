@@ -28,7 +28,7 @@ public class ImgTransformationUtils {
      */
     public static ImgTransformationUtils getInstance() {
         ImgTransformationUtils checkInstance = instance;
-        if(checkInstance != null)
+        if (checkInstance != null)
             return checkInstance;
         synchronized (ImgTransformationUtils.class) {
             if (instance == null)
@@ -56,7 +56,7 @@ public class ImgTransformationUtils {
         try {
             BufferedImage bImage = ImageIO.read(new File(EMPTY_PICTURE_PATH));
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ImageIO.write(bImage, "jpg", bos );
+            ImageIO.write(bImage, "jpg", bos);
             return bos.toByteArray();
         } catch (Exception e) {
             e.printStackTrace();

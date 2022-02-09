@@ -45,7 +45,7 @@ public class GuideEntity {
     /**
      * Описание экскурсовода
      */
-    @Column(name = "description", columnDefinition="TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     /**

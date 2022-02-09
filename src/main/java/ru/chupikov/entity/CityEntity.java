@@ -32,13 +32,13 @@ public class CityEntity {
     /**
      * Описание города
      */
-    @Column(name = "description", columnDefinition="TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     /**
      * Список необычных мест
      */
-    @Column(name = "places_list", nullable = false, columnDefinition="TEXT")
+    @Column(name = "places_list", nullable = false, columnDefinition = "TEXT")
     private String places;
 
     /**

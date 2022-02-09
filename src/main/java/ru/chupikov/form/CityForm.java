@@ -29,7 +29,7 @@ public class CityForm {
     /**
      * Фото города
      */
-    MultipartFile photo;
+    private MultipartFile photo;
 
     /**
      * Список интересных мест

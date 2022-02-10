@@ -48,7 +48,11 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-sm btn-outline-warning" onclick="openForm(modalChangeCity)">
+    <button type="button" class="btn btn-sm btn-outline-warning"
+            th:attr="onclick='javascript:openCngForm(modalChangeCity, \''
+            + ${city.getName()} + '\', \''
+            + ${city.getDescription()} + '\', \''
+            + ${city.getPlaces()} + '\')'">
         Редактировать город
     </button>
     <button type="button" class="btn btn-sm btn-outline-danger" onclick="openForm(modalDeleteCity)">
@@ -84,24 +88,28 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5 pt-0">
-                    <form class="">
+                    <form class="" action="#" th:action="@{/update_city/{id}(id=${city.getId()})}"
+                          th:object="${cityForm}" enctype="multipart/form-data" method="post">
                         <div class="form-floating mb-3">
-                            <input type="text" class="inp form-control rounded-4" id="floatingName"
-                                   placeholder="Name" maxlength="100">
+                            <input type="text" class="form-control rounded-4" id="floatingName"
+                                   placeholder="name" maxlength="100" th:field="*{name}">
                             <label for="floatingName">Наименование</label>
                         </div>
                         <div class="mb-3">
-                            <label for="formFile">Фотография</label>
-                            <input class="form-control" type="file" id="formFile">
+                            <label for="photoCity">Фотография</label>
+                            <input class="form-control" type="file" id="photoCity" name="photoCity"
+                                   accept="image/png, image/jpeg">
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control rounded-4 inp" id="floatingDesc" placeholder="desc"
-                                      rows="10" maxlength="1000"></textarea>
+                                      rows="10" maxlength="1000" th:field="*{description}">
+                            </textarea>
                             <label for="floatingDesc">Описание</label>
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control rounded-4" id="floatingList" placeholder="list"
-                                      rows="10" maxlength="1000"></textarea>
+                                      rows="10" maxlength="1000" th:field="*{places}">
+                            </textarea>
                             <label for="floatingList">Список необычных мест</label>
                         </div>
                         <button class="w-100 mb-2 btn btn-lg rounded-4 btn-warning" type="submit">Изменить</button>

@@ -9,6 +9,7 @@ import ru.chupikov.form.CityForm;
 import ru.chupikov.utils.ImgTransformationUtils;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Сервис с Crud операциями для городов
@@ -23,6 +24,7 @@ public class CityCrudService {
      * Процедура сохранения нового города
      *
      * @param cityForm форма нового города
+     * @throws IOException исключение в случае ошибки доступа (при сбое временного хранилища)
      */
     @Transactional
     public void save(CityForm cityForm) throws IOException {
@@ -46,6 +48,30 @@ public class CityCrudService {
     @Transactional
     public void deleteById(Long id) {
         cityRepository.deleteById(id);
+    }
+
+    /**
+     * Метод обновления города в БД
+     *
+     * @param cityForm обновленные данные города
+     * @throws IOException исключение в случае ошибки доступа (при сбое временного хранилища)
+     */
+    @Transactional
+    public void update(CityForm cityForm) throws IOException {
+        Optional<CityEntity> city = cityRepository.findById(cityForm.getId());
+        if (city.isPresent()) {
+            CityEntity updatedCity = CityEntity.builder()
+                    .id(cityForm.getId())
+                    .name(cityForm.getName())
+                    .description(cityForm.getDescription())
+                    .places(cityForm.getPlaces())
+                    .build();
+            if (cityForm.getPhoto().getSize() == 0)
+                updatedCity.setPhoto(city.get().getPhoto());
+            else
+                updatedCity.setPhoto(cityForm.getPhoto().getBytes());
+            cityRepository.save(updatedCity);
+        }
     }
 
 }

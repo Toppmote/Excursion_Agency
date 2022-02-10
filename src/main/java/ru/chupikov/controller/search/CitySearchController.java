@@ -47,6 +47,7 @@ public class CitySearchController {
     public String loadCitiesDetailsPage(@PathVariable Long id, Model model) {
         model.addAttribute("city", citySearchService.findById(id));
         model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());
+        model.addAttribute("cityForm", new CityForm());
         return "city_details";
     }
 

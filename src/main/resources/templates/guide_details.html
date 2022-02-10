@@ -47,7 +47,12 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-sm btn-outline-warning" onclick="openForm(modalChangeGuide)">
+    <button type="button" class="btn btn-sm btn-outline-warning"
+            th:attr="onclick='javascript:openCngForm(modalChangeGuide, \''
+            + ${guide.getName()} + '\', \''
+            + ${guide.getSurname()} + '\', \''
+            + ${#dates.format(guide.getBirthdate(), 'yyyy-MM-dd')} + '\', \''
+            + ${guide.getDescription()} + '\')'">
         Редактировать экскурсовода
     </button>
     <button type="button" class="btn btn-sm btn-outline-danger" onclick="openForm(modalDeleteGuide)">
@@ -80,29 +85,31 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5 pt-0">
-                    <form class="">
+                    <form class="" action="#" th:action="@{/update_guide/{id}(id=${guide.getId()})}"
+                          th:object="${guideForm}" enctype="multipart/form-data" method="post">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control rounded-4" id="floatingName"
-                                   placeholder="Name" maxlength="50">
+                                   placeholder="Name" maxlength="50" th:field="*{name}">
                             <label for="floatingName">Имя</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control rounded-4" id="floatingSurname"
-                                   placeholder="Surname" maxlength="50">
+                                   placeholder="Surname" maxlength="50" th:field="*{surname}">
                             <label for="floatingSurname">Фамилия</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="date" class="form-control rounded-4" id="floatingDate"
-                                   placeholder="2000-06-02">
+                                   placeholder="2000-06-02" th:field="*{birthdate}">
                             <label for="floatingDate">Дата рождения</label>
                         </div>
                         <div class="mb-3">
-                            <label for="formFile">Фотография</label>
-                            <input class="form-control" type="file" id="formFile" placeholder="Photo">
+                            <label for="photoGuide">Фотография</label>
+                            <input class="form-control" type="file" id="photoGuide" name="photoGuide"
+                                   accept="image/png, image/jpeg">
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control rounded-4" id="floatingDesc" placeholder="desc"
-                                      rows="10" maxlength="1000"></textarea>
+                                      rows="10" maxlength="1000" th:field="*{description}"></textarea>
                             <label for="floatingDesc">Описание</label>
                         </div>
                         <button class="w-100 mb-2 btn btn-lg rounded-4 btn-warning" type="submit">Редактировать</button>

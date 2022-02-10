@@ -46,4 +46,25 @@ public class GuideCrudController {
         return new RedirectView("/guides");
     }
 
+    /**
+     * Метод обработки запроса на обновление экскурсовода
+     *
+     * @param id         id экскурсовода для обновления
+     * @param guideForm  новые данные о экскурсоводе
+     * @param photoGuide новое фото экскурсовода
+     * @return редирект на страницу того же экскурсовода
+     */
+    @PostMapping("/update_guide/{id}")
+    public RedirectView updateGuide(@PathVariable Long id, @ModelAttribute GuideForm guideForm,
+                                    @RequestParam("photoGuide") MultipartFile photoGuide) {
+        try {
+            guideForm.setId(id);
+            guideForm.setPhoto(photoGuide);
+            guideCrudService.update(guideForm);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new RedirectView("/guides/" + id);
+    }
+
 }

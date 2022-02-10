@@ -46,4 +46,25 @@ public class CityCrudController {
         return new RedirectView("/cities");
     }
 
+    /**
+     * Метод обработки запроса на обновление города
+     *
+     * @param id        id города для обновления
+     * @param cityForm  новые данные о городе
+     * @param photoCity новое фото города
+     * @return редирект на страницу того же города
+     */
+    @PostMapping("/update_city/{id}")
+    public RedirectView updateCity(@PathVariable Long id, @ModelAttribute CityForm cityForm,
+                                   @RequestParam("photoCity") MultipartFile photoCity) {
+        try {
+            cityForm.setId(id);
+            cityForm.setPhoto(photoCity);
+            cityCrudService.update(cityForm);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new RedirectView("/cities/" + id);
+    }
+
 }

@@ -50,6 +50,7 @@ public class GuideSearchController {
         GuideEntity guide = guideSearchService.findById(id);
         model.addAttribute("guide", guide);
         model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());
+        model.addAttribute("guideForm", new GuideForm());
         SimpleDateFormat prettyDate = new SimpleDateFormat("dd.MM.yyyy");
         model.addAttribute("prettyBirthdate", prettyDate.format(guide.getBirthdate()));
         return "guide_details";

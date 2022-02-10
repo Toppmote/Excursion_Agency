@@ -24,9 +24,9 @@ public class GuideCrudService {
     GuideRepository guideRepository;
 
     /**
-     * Процедура сохранения нового экскурсовода
+     * Процедура сохранения нового экскурсовода в БД
      *
-     * @param guideForm форма нового экскурсовода
+     * @param guideForm форма с данными нового экскурсовода
      */
     @Transactional
     public void save(GuideForm guideForm) throws IOException {
@@ -44,7 +44,7 @@ public class GuideCrudService {
     }
 
     /**
-     * Процедура удаления экскурсовода по ID
+     * Процедура удаления экскурсовода по ID из БД
      *
      * @param id ID экскурсовода
      */
@@ -53,6 +53,12 @@ public class GuideCrudService {
         guideRepository.deleteById(id);
     }
 
+    /**
+     * Процедура обновления экскурсовода в БД
+     *
+     * @param guideForm форма с новыми данными экскурсовода
+     * @throws IOException исключение в случае ошибки доступа (при сбое временного хранилища)
+     */
     @Transactional
     public void update(GuideForm guideForm) throws IOException {
         Optional<GuideEntity> guide = guideRepository.findById(guideForm.getId());

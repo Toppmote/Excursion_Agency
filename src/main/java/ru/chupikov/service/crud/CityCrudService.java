@@ -21,9 +21,9 @@ public class CityCrudService {
     CityRepository cityRepository;
 
     /**
-     * Процедура сохранения нового города
+     * Процедура сохранения нового города в БД
      *
-     * @param cityForm форма нового города
+     * @param cityForm форма с данными нового города
      * @throws IOException исключение в случае ошибки доступа (при сбое временного хранилища)
      */
     @Transactional
@@ -51,9 +51,9 @@ public class CityCrudService {
     }
 
     /**
-     * Метод обновления города в БД
+     * Процедура обновления города в БД
      *
-     * @param cityForm обновленные данные города
+     * @param cityForm форма с новыми данными города
      * @throws IOException исключение в случае ошибки доступа (при сбое временного хранилища)
      */
     @Transactional

@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * Форма регистрации нового экскурсовода
+ * Форма для получения экскурсовода с клинета
  */
 @Getter
 @Setter

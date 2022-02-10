@@ -56,7 +56,8 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <img src="/pictures/moscow.jpg" alt="Город экскурсии" class="img-fluid">
+                <img th:src="'data:image/jpeg;base64,' + ${imgConverter.byteToBase64(excursion.getCity().getPhoto())}"
+                 alt="Город экскурсии" class="img-fluid">
             </div>
         </div>
         <hr class="featurette-divider">
@@ -84,41 +85,38 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5 pt-0">
-                    <form class="">
+                    <form class="" action="#" th:action="@{/add_excursion}" th:object="${excursionForm}"
+                          method="post">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control rounded-4" id="floatingName"
-                                   placeholder="Name" maxlength="100">
+                                   placeholder="Name" maxlength="100" th:field="*{name}">
                             <label for="floatingName">Наименование</label>
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control rounded-4" id="floatingDesc" placeholder="desc"
-                                      rows="10" maxlength="1000"></textarea>
+                                      rows="10" maxlength="1000" th:field="*{description}"></textarea>
                             <label for="floatingDesc">Описание</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="date" class="form-control rounded-4" id="floatingDate"
-                                   placeholder="2000-06-02">
+                                   placeholder="2000-06-02" th:field="*{date}">
                             <label for="floatingDate">Дата проведения</label>
                         </div>
+                        <label for="cityList">Город</label>
                         <div class="form-floating mb-3">
-                            <input class="form-control rounded-4" list="cityList" id="cityInputList"
-                                   placeholder="Нажмите для открытия списка...">
-                            <label for="cityInputList">Город</label>
-                            <datalist id="cityList">
-                                <th:block th:each="city : ${cities}">
-                                    <option th:value="${city.getName()}">
-                                </th:block>
-                            </datalist>
+                            <select class="form-select form-control rounded-4" id="cityList" th:field="*{cityId}">
+                                <option th:each="city : ${cities}"
+                                        th:value="${city.getId()}"
+                                        th:utext="${city.getName()}">
+                            </select>
                         </div>
+                        <label for="guideList">Экскурсовод</label>
                         <div class="form-floating mb-3">
-                            <input class="form-control rounded-4" list="guideList" id="guideInputList"
-                                   placeholder="Нажмите для открытия списка...">
-                            <label for="guideInputList">Экскурсовод</label>
-                            <datalist id="guideList">
-                                <th:block th:each="guide : ${guides}">
-                                    <option th:value="${guide.getName() + ' ' + guide.getSurname()}">
-                                </th:block>
-                            </datalist>
+                            <select class="form-select form-control rounded-4" id="guideList" th:field="*{guideId}">
+                                <option th:each="guide : ${guides}"
+                                        th:value="${guide.getId()}"
+                                        th:utext="${guide.getName() + ' ' + guide.getSurname()}">
+                            </select>
                         </div>
                         <button class="w-100 mb-2 btn btn-lg rounded-4 btn-success" type="submit">Добавить экскурсию
                         </button>

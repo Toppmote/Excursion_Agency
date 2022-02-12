@@ -6,13 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.chupikov.dto.GuideModel;
-import ru.chupikov.entity.GuideEntity;
 import ru.chupikov.form.GuideForm;
 import ru.chupikov.service.search.GuideSearchService;
-import ru.chupikov.utils.ImgTransformationUtils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**

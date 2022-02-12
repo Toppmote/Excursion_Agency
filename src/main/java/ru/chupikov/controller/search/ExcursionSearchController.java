@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import ru.chupikov.dto.CityModel;
 import ru.chupikov.dto.ExcursionModel;
 import ru.chupikov.dto.GuideModel;
-import ru.chupikov.entity.ExcursionEntity;
 import ru.chupikov.form.ExcursionForm;
 import ru.chupikov.service.search.CitySearchService;
 import ru.chupikov.service.search.ExcursionSearchService;
 import ru.chupikov.service.search.GuideSearchService;
-import ru.chupikov.utils.ImgTransformationUtils;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package ru.chupikov.controller.search;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.util.List;
  * Контроллер для операций поиска, связанных с экскурсоводами
  */
 @Controller
+@Slf4j
 public class GuideSearchController {
 
     @Autowired
@@ -28,9 +30,11 @@ public class GuideSearchController {
      */
     @GetMapping("/guides")
     public String loadGuidesPage(Model model) {
+        log.info("[GET - /guides]\tEntered loadGuidesPage method");
         List<GuideModel> guides = guideSearchService.findAll();
         model.addAttribute("guides", guides);
         model.addAttribute("guideForm", new GuideForm());
+        log.info("[GET - /guides]\tLoading guides page");
         return "guides";
     }
 
@@ -43,9 +47,11 @@ public class GuideSearchController {
      */
     @GetMapping("/guides/{id}")
     public String loadGuideDetailsPage(@PathVariable Long id, Model model) {
+        log.info("[GET - /guides/" + id + "]\tEntered loadGuideDetailsPage method");
         GuideModel guide = guideSearchService.findById(id);
         model.addAttribute("guide", guide);
         model.addAttribute("guideForm", new GuideForm());
+        log.info("[GET - /guides/" + id + "]\tLoading guide_details page");
         return "guide_details";
     }
 

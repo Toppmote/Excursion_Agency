@@ -2,6 +2,7 @@ package ru.chupikov.utils;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import java.util.Base64;
  * Утильный singleton-класс для работы с преобразованиями изображений
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Slf4j
 public class ImgTransformationUtils {
 
     private static final String EMPTY_PICTURE_PATH = "src/main/resources/static/pictures/empty.jpg";
@@ -45,6 +47,7 @@ public class ImgTransformationUtils {
      * @return строка изображения
      */
     public String byteToBase64(byte[] arrayByte) {
+        log.info("[ImgTransformationUtils]\tReturning image as string");
         return Base64.getMimeEncoder().encodeToString(arrayByte);
     }
 
@@ -54,14 +57,18 @@ public class ImgTransformationUtils {
      * @return массив байт
      */
     public byte[] getByteEmptyPicture() {
+        log.info("[ImgTransformationUtils]\tEntered getByteEmptyPicture method");
         try {
             BufferedImage bImage = ImageIO.read(new File(EMPTY_PICTURE_PATH));
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ImageIO.write(bImage, "jpg", bos);
-            return bos.toByteArray();
+            byte[] picture = bos.toByteArray();
+            log.info("[ImgTransformationUtils]\tReturning empty image as byte[]");
+            return picture;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
+        log.info("[ImgTransformationUtils]\tExit getByteEmptyPicture method");
         return null;
     }
 

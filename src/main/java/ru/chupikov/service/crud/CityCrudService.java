@@ -1,5 +1,6 @@
 package ru.chupikov.service.crud;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import java.util.Optional;
  * Сервис с Crud операциями для городов
  */
 @Service
+@Slf4j
 public class CityCrudService {
 
     @Autowired
@@ -29,12 +31,14 @@ public class CityCrudService {
      */
     @Transactional
     public void save(CityForm cityForm) throws IOException {
+        log.info("[CityCrudService]\tEntered save method");
         CityEntity city = CityMapper.formToEntity(cityForm);
         if (cityForm.getPhoto().getSize() == 0)
             city.setPhoto(ImgTransformationUtils.getInstance().getByteEmptyPicture());
         else
             city.setPhoto(cityForm.getPhoto().getBytes());
         cityRepository.save(city);
+        log.info("[CityCrudService]\tSuccessfully saved city");
     }
 
     /**
@@ -44,7 +48,9 @@ public class CityCrudService {
      */
     @Transactional
     public void deleteById(Long id) {
+        log.info("[CityCrudService]\tEntered deleteById method");
         cityRepository.deleteById(id);
+        log.info("[CityCrudService]\tSuccessfully deleted city with id = " + id);
     }
 
     /**
@@ -55,6 +61,7 @@ public class CityCrudService {
      */
     @Transactional
     public void update(CityForm cityForm) throws IOException {
+        log.info("[CityCrudService]\tEntered update method");
         Optional<CityEntity> city = cityRepository.findById(cityForm.getId());
         if (city.isPresent()) {
             CityEntity updatedCity = CityMapper.formToEntity(cityForm);
@@ -63,7 +70,9 @@ public class CityCrudService {
             else
                 updatedCity.setPhoto(cityForm.getPhoto().getBytes());
             cityRepository.save(updatedCity);
+            log.info("[CityCrudService]\tSuccessfully updated city with id = " + cityForm.getId());
         }
+        log.info("[CityCrudService]\tExit update method");
     }
 
 }

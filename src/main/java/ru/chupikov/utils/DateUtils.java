@@ -1,11 +1,14 @@
 package ru.chupikov.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * Класс утильных методов для работы с датами
  */
+@Slf4j
 public class DateUtils {
 
     /**
@@ -15,11 +18,14 @@ public class DateUtils {
      * @return объект даты
      */
     public static Date parseDate(String date) {
+        log.info("[DateUtils]\tEntered parseDate method");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            return simpleDateFormat.parse(date);
+            Date dateObj = simpleDateFormat.parse(date);
+            log.info("[DateUtils]\tReturning date object");
+            return dateObj;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             return new Date();
         }
     }

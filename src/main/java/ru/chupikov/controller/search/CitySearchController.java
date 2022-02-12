@@ -1,5 +1,6 @@
 package ru.chupikov.controller.search;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.util.List;
  * Контроллер для операций поиска, связанных с городами
  */
 @Controller
+@Slf4j
 public class CitySearchController {
 
     @Autowired
@@ -28,9 +30,11 @@ public class CitySearchController {
      */
     @GetMapping("/cities")
     public String loadCitiesPage(Model model) {
+        log.info("[GET - /cities]\tEntered loadCitiesPage method");
         List<CityModel> cities = citySearchService.findAll();
         model.addAttribute("cities", cities);
         model.addAttribute("cityForm", new CityForm());
+        log.info("[GET - /cities]\tLoading cities page");
         return "cities";
     }
 
@@ -43,8 +47,10 @@ public class CitySearchController {
      */
     @GetMapping("/cities/{id}")
     public String loadCitiesDetailsPage(@PathVariable Long id, Model model) {
+        log.info("[GET - /cities/" + id + "]\tEntered loadCitiesDetailsPage method");
         model.addAttribute("city", citySearchService.findById(id));
         model.addAttribute("cityForm", new CityForm());
+        log.info("[GET - /cities/" + id + "]\tLoading city_details page");
         return "city_details";
     }
 

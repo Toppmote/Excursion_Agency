@@ -1,5 +1,6 @@
 package ru.chupikov.service.search;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.Optional;
  * Сервис с операциями поиска для городов
  */
 @Service
+@Slf4j
 public class CitySearchService {
 
     @Autowired
@@ -28,7 +30,9 @@ public class CitySearchService {
      */
     @Transactional(readOnly = true)
     public List<CityModel> findAll(){
+        log.info("[CitySearchService]\tEntered findAll method");
         List<CityEntity> cityEntities = cityRepository.findAll(Sort.by("name"));
+        log.info("[CitySearchService]\tReturning list of cities");
         return CityMapper.entityListToModel(cityEntities);
     }
 
@@ -40,7 +44,9 @@ public class CitySearchService {
      */
     @Transactional(readOnly = true)
     public CityModel findById(Long id) {
+        log.info("[CitySearchService]\tEntered findById method");
         Optional<CityEntity> cityEntity = cityRepository.findById(id);
+        log.info("[CitySearchService]\tReturning city with id = " + id);
         return cityEntity.map(CityMapper::entityToModel).orElse(null);
     }
 

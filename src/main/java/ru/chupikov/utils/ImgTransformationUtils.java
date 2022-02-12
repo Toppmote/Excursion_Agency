@@ -1,5 +1,6 @@
 package ru.chupikov.utils;
 
+import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import javax.imageio.ImageIO;
@@ -11,7 +12,7 @@ import java.util.Base64;
 /**
  * Утильный singleton-класс для работы с преобразованиями изображений
  */
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImgTransformationUtils {
 
     private static final String EMPTY_PICTURE_PATH = "src/main/resources/static/pictures/empty.jpg";

@@ -27,8 +27,9 @@ public class CitySearchService {
      * @return список найденных городов, отсортированных по имени
      */
     @Transactional(readOnly = true)
-    public List<CityEntity> findAll(){
-        return cityRepository.findAll(Sort.by("name"));
+    public List<CityModel> findAll(){
+        List<CityEntity> cityEntities = cityRepository.findAll(Sort.by("name"));
+        return CityMapper.entityListToModel(cityEntities);
     }
 
     /**

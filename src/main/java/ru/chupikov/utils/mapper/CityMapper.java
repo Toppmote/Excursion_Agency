@@ -31,10 +31,10 @@ public class CityMapper {
     }
 
     /**
-     * Статический метод преобразования сущности города в модель
+     * Статический метод преобразования списка сущностей городов в список канальных моделей
      *
-     * @param cityEntities список сущностей города
-     * @return список канальных моделей города
+     * @param cityEntities список сущностей городов
+     * @return список канальных моделей городов
      */
     public static List<CityModel> entityListToModel(List<CityEntity> cityEntities) {
         return cityEntities.stream().map(CityMapper::entityToModel).collect(Collectors.toList());
@@ -48,6 +48,7 @@ public class CityMapper {
      */
     public static CityEntity formToEntity(CityForm cityForm) {
         return CityEntity.builder()
+                .id(cityForm.getId())
                 .name(cityForm.getName())
                 .description(cityForm.getDescription())
                 .places(cityForm.getPlaces())

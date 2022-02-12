@@ -58,7 +58,6 @@ public class CityCrudService {
         Optional<CityEntity> city = cityRepository.findById(cityForm.getId());
         if (city.isPresent()) {
             CityEntity updatedCity = CityMapper.formToEntity(cityForm);
-            updatedCity.setId(cityForm.getId());
             if (cityForm.getPhoto().getSize() == 0)
                 updatedCity.setPhoto(city.get().getPhoto());
             else

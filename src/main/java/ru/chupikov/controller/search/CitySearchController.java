@@ -5,10 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import ru.chupikov.entity.CityEntity;
+import ru.chupikov.dto.CityModel;
 import ru.chupikov.form.CityForm;
 import ru.chupikov.service.search.CitySearchService;
-import ru.chupikov.utils.mapper.CityMapper;
 
 import java.util.List;
 
@@ -29,8 +28,8 @@ public class CitySearchController {
      */
     @GetMapping("/cities")
     public String loadCitiesPage(Model model) {
-        List<CityEntity> cities = citySearchService.findAll();
-        model.addAttribute("cities", CityMapper.entityListToModel(cities));
+        List<CityModel> cities = citySearchService.findAll();
+        model.addAttribute("cities", cities);
         model.addAttribute("cityForm", new CityForm());
         return "cities";
     }

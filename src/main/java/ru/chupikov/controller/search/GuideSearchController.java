@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import ru.chupikov.dto.GuideModel;
 import ru.chupikov.entity.GuideEntity;
 import ru.chupikov.form.GuideForm;
 import ru.chupikov.service.search.GuideSearchService;
@@ -31,10 +32,9 @@ public class GuideSearchController {
      */
     @GetMapping("/guides")
     public String loadGuidesPage(Model model) {
-        List<GuideEntity> guides = guideSearchService.findAll();
+        List<GuideModel> guides = guideSearchService.findAll();
         model.addAttribute("guides", guides);
         model.addAttribute("guideForm", new GuideForm());
-        model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());
         return "guides";
     }
 
@@ -47,12 +47,9 @@ public class GuideSearchController {
      */
     @GetMapping("/guides/{id}")
     public String loadGuideDetailsPage(@PathVariable Long id, Model model) {
-        GuideEntity guide = guideSearchService.findById(id);
+        GuideModel guide = guideSearchService.findById(id);
         model.addAttribute("guide", guide);
-        model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());
         model.addAttribute("guideForm", new GuideForm());
-        SimpleDateFormat prettyDate = new SimpleDateFormat("dd.MM.yyyy");
-        model.addAttribute("prettyBirthdate", prettyDate.format(guide.getBirthdate()));
         return "guide_details";
     }
 

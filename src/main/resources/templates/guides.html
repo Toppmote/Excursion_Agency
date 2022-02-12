@@ -46,7 +46,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col" th:each="guide : ${guides}">
                     <div class="card shadow-sm">
-                        <img th:src="'data:image/jpeg;base64,' + ${imgConverter.byteToBase64(guide.getPhoto())}"
+                        <img th:src="${guide.getPhoto()}"
                              alt="Экскурсовод" class="img-fluid">
                         <div class="card-body">
                             <p class="card-text" th:utext="${guide.getName() + ' ' + guide.getSurname()}"></p>

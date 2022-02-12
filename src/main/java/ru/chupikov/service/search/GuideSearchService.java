@@ -5,9 +5,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.chupikov.dao.GuideRepository;
+import ru.chupikov.dto.GuideModel;
 import ru.chupikov.entity.GuideEntity;
+import ru.chupikov.utils.mapper.GuideMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Сервис с операциями поиска для экскурсоводов
@@ -24,8 +27,9 @@ public class GuideSearchService {
      * @return список найденных экскурсоводов, отсортированных по имени
      */
     @Transactional(readOnly = true)
-    public List<GuideEntity> findAll() {
-        return guideRepository.findAll(Sort.by("name"));
+    public List<GuideModel> findAll() {
+        List<GuideEntity> guideEntities = guideRepository.findAll(Sort.by("name"));
+        return GuideMapper.entityListToModel(guideEntities);
     }
 
     /**
@@ -35,8 +39,9 @@ public class GuideSearchService {
      * @return Сущность экскурсовода
      */
     @Transactional(readOnly = true)
-    public GuideEntity findById(Long id) {
-        return guideRepository.findById(id).orElse(null);
+    public GuideModel findById(Long id) {
+        Optional<GuideEntity> guideEntity = guideRepository.findById(id);
+        return guideEntity.map(GuideMapper::entityToModel).orElse(null);
     }
 
 }

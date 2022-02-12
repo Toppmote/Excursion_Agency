@@ -6,12 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.chupikov.dao.GuideRepository;
 import ru.chupikov.entity.GuideEntity;
 import ru.chupikov.form.GuideForm;
-import ru.chupikov.utils.DateUtils;
 import ru.chupikov.utils.ImgTransformationUtils;
+import ru.chupikov.utils.mapper.GuideMapper;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -30,12 +28,7 @@ public class GuideCrudService {
      */
     @Transactional
     public void save(GuideForm guideForm) throws IOException {
-        GuideEntity guide = GuideEntity.builder()
-                .name(guideForm.getName())
-                .surname(guideForm.getSurname())
-                .description(guideForm.getDescription())
-                .build();
-        guide.setBirthdate(DateUtils.parseDate(guideForm.getBirthdate()));
+        GuideEntity guide = GuideMapper.formToEntity(guideForm);
         if (guideForm.getPhoto().getSize() == 0)
             guide.setPhoto(ImgTransformationUtils.getInstance().getByteEmptyPicture());
         else
@@ -63,13 +56,7 @@ public class GuideCrudService {
     public void update(GuideForm guideForm) throws IOException {
         Optional<GuideEntity> guide = guideRepository.findById(guideForm.getId());
         if (guide.isPresent()) {
-            GuideEntity updatedGuide = GuideEntity.builder()
-                    .id(guideForm.getId())
-                    .name(guideForm.getName())
-                    .surname(guideForm.getSurname())
-                    .description(guideForm.getDescription())
-                    .build();
-            updatedGuide.setBirthdate(DateUtils.parseDate(guideForm.getBirthdate()));
+            GuideEntity updatedGuide = GuideMapper.formToEntity(guideForm);
             if (guideForm.getPhoto().getSize() == 0)
                 updatedGuide.setPhoto(guide.get().getPhoto());
             else

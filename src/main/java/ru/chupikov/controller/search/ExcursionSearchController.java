@@ -5,16 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import ru.chupikov.entity.CityEntity;
+import ru.chupikov.dto.CityModel;
+import ru.chupikov.dto.ExcursionModel;
+import ru.chupikov.dto.GuideModel;
 import ru.chupikov.entity.ExcursionEntity;
-import ru.chupikov.entity.GuideEntity;
 import ru.chupikov.form.ExcursionForm;
 import ru.chupikov.service.search.CitySearchService;
 import ru.chupikov.service.search.ExcursionSearchService;
 import ru.chupikov.service.search.GuideSearchService;
 import ru.chupikov.utils.ImgTransformationUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -40,11 +40,10 @@ public class ExcursionSearchController {
      */
     @GetMapping("/excursions")
     public String loadExcursionsPage(Model model) {
-        List<ExcursionEntity> excursions = excursionSearchService.findAll();
+        List<ExcursionModel> excursions = excursionSearchService.findAll();
         model.addAttribute("excursions", excursions);
         model.addAttribute("cities", citySearchService.findAll());
         model.addAttribute("guides", guideSearchService.findAll());
-        model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());
         model.addAttribute("excursionForm", new ExcursionForm());
         return "excursions";
     }
@@ -58,17 +57,14 @@ public class ExcursionSearchController {
      */
     @GetMapping("/excursions/{id}")
     public String loadExcursionDetailsPage(@PathVariable Long id, Model model) {
-        ExcursionEntity excursion = excursionSearchService.findById(id);
+        ExcursionModel excursion = excursionSearchService.findById(id);
         model.addAttribute("excursion", excursion);
-        model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());
         model.addAttribute("excursionForm", new ExcursionForm());
-        SimpleDateFormat prettyDate = new SimpleDateFormat("dd.MM.yyyy");
-        model.addAttribute("prettyDate", prettyDate.format(excursion.getDate()));
-        List<CityEntity> cities = citySearchService.findAll();
+        List<CityModel> cities = citySearchService.findAll();
         cities.remove(excursion.getCity());
         cities.add(0, excursion.getCity());
         model.addAttribute("cities", cities);
-        List<GuideEntity> guides = guideSearchService.findAll();
+        List<GuideModel> guides = guideSearchService.findAll();
         guides.remove(excursion.getGuide());
         guides.add(0, excursion.getGuide());
         model.addAttribute("guides", guides);

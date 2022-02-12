@@ -2,6 +2,7 @@ package ru.chupikov.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Getter;
 @Builder
 @Getter
 @AllArgsConstructor
+@EqualsAndHashCode
 public class CityModel {
 
     /**

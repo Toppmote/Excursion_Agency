@@ -51,12 +51,12 @@
                     </a>
                     <br>
                     <strong>Дата проведения экскурсии: </strong>
-                    <span th:utext="${prettyDate}"></span>
+                    <span th:utext="${excursion.getPrettyDate}"></span>
                     <br><br>
                     Запись на экскурсию осуществляется по телефону +78005553247 или по email excursions@gmail.com</p>
             </div>
             <div class="col-md-5">
-                <img th:src="'data:image/jpeg;base64,' + ${imgConverter.byteToBase64(excursion.city.getPhoto())}"
+                <img th:src="${excursion.city.getPhoto()}"
                      alt="Город" class="img-fluid">
             </div>
         </div>
@@ -65,7 +65,7 @@
             th:attr="onclick='javascript:openCngForm(modalChangeExcursion, \''
             + ${excursion.getName()} + '\', \''
             + ${excursion.getDescription()} + '\', \''
-            + ${#dates.format(excursion.getDate(), 'yyyy-MM-dd')} + '\')'">
+            + ${excursion.getDate()} + '\')'">
         Редактировать экскурсию
     </button>
     <button type="button" class="btn btn-sm btn-outline-danger" onclick="openForm(modalDeleteExcursion)">

@@ -5,9 +5,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.chupikov.dao.ExcursionRepository;
+import ru.chupikov.dto.ExcursionModel;
 import ru.chupikov.entity.ExcursionEntity;
+import ru.chupikov.utils.mapper.ExcursionMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Сервис с операциями поиска для экскурсий
@@ -24,8 +27,9 @@ public class ExcursionSearchService {
      * @return список найденных экскурсий, отсортированных по имени
      */
     @Transactional(readOnly = true)
-    public List<ExcursionEntity> findAll() {
-        return excursionRepository.findAll(Sort.by("date"));
+    public List<ExcursionModel> findAll() {
+        List<ExcursionEntity> excursionEntities = excursionRepository.findAll(Sort.by("date"));
+        return ExcursionMapper.entityListToModel(excursionEntities);
     }
 
     /**
@@ -35,8 +39,9 @@ public class ExcursionSearchService {
      * @return Сущность экскурсии
      */
     @Transactional(readOnly = true)
-    public ExcursionEntity findById(Long id) {
-        return excursionRepository.findById(id).orElse(null);
+    public ExcursionModel findById(Long id) {
+        Optional<ExcursionEntity> excursionEntity = excursionRepository.findById(id);
+        return excursionEntity.map(ExcursionMapper::entityToModel).orElse(null);
     }
 
 }

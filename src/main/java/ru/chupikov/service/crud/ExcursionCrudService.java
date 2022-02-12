@@ -11,6 +11,7 @@ import ru.chupikov.entity.ExcursionEntity;
 import ru.chupikov.entity.GuideEntity;
 import ru.chupikov.form.ExcursionForm;
 import ru.chupikov.utils.DateUtils;
+import ru.chupikov.utils.mapper.ExcursionMapper;
 
 import java.util.Optional;
 
@@ -39,13 +40,9 @@ public class ExcursionCrudService {
         Optional<CityEntity> city = cityRepository.findById(excursionForm.getCityId());
         Optional<GuideEntity> guide = guideRepository.findById(excursionForm.getGuideId());
         if (city.isPresent() && guide.isPresent()) {
-            ExcursionEntity excursion = ExcursionEntity.builder()
-                    .name(excursionForm.getName())
-                    .description(excursionForm.getDescription())
-                    .date(DateUtils.parseDate(excursionForm.getDate()))
-                    .city(city.get())
-                    .guide(guide.get())
-                    .build();
+            ExcursionEntity excursion = ExcursionMapper.formToEntity(excursionForm);
+            excursion.setCity(city.get());
+            excursion.setGuide(guide.get());
             excursionRepository.save(excursion);
         }
     }
@@ -71,14 +68,9 @@ public class ExcursionCrudService {
             Optional<GuideEntity> guide = guideRepository.findById(excursionForm.getGuideId());
             Optional<CityEntity> city = cityRepository.findById(excursionForm.getCityId());
             if (city.isPresent() && guide.isPresent()) {
-                ExcursionEntity updatedExcursion = ExcursionEntity.builder()
-                        .id(excursionForm.getId())
-                        .name(excursionForm.getName())
-                        .description(excursionForm.getDescription())
-                        .date(DateUtils.parseDate(excursionForm.getDate()))
-                        .city(city.get())
-                        .guide(guide.get())
-                        .build();
+                ExcursionEntity updatedExcursion = ExcursionMapper.formToEntity(excursionForm);
+                updatedExcursion.setCity(city.get());
+                updatedExcursion.setGuide(guide.get());
                 excursionRepository.save(updatedExcursion);
             }
         }

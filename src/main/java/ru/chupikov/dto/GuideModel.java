@@ -2,6 +2,7 @@ package ru.chupikov.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Getter;
  */
 @Builder
 @Getter
+@EqualsAndHashCode
 @AllArgsConstructor
 public class GuideModel {
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import ru.chupikov.entity.CityEntity;
 import ru.chupikov.form.CityForm;
 import ru.chupikov.service.search.CitySearchService;
-import ru.chupikov.utils.ImgTransformationUtils;
+import ru.chupikov.utils.mapper.CityMapper;
 
 import java.util.List;
 
@@ -30,9 +30,8 @@ public class CitySearchController {
     @GetMapping("/cities")
     public String loadCitiesPage(Model model) {
         List<CityEntity> cities = citySearchService.findAll();
-        model.addAttribute("cities", cities);
+        model.addAttribute("cities", CityMapper.entityListToModel(cities));
         model.addAttribute("cityForm", new CityForm());
-        model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());
         return "cities";
     }
 
@@ -46,7 +45,6 @@ public class CitySearchController {
     @GetMapping("/cities/{id}")
     public String loadCitiesDetailsPage(@PathVariable Long id, Model model) {
         model.addAttribute("city", citySearchService.findById(id));
-        model.addAttribute("imgConverter", ImgTransformationUtils.getInstance());
         model.addAttribute("cityForm", new CityForm());
         return "city_details";
     }

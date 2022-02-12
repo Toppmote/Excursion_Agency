@@ -47,7 +47,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col" th:each="city : ${cities}">
                     <div class="card shadow-sm">
-                        <img th:src="'data:image/jpeg;base64,' + ${imgConverter.byteToBase64(city.getPhoto())}"
+                        <img th:src="${city.getPhoto()}"
                              alt="Город"
                              class="img-fluid">
                         <div class="card-body">

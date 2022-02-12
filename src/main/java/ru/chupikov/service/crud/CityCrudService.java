@@ -7,6 +7,7 @@ import ru.chupikov.dao.CityRepository;
 import ru.chupikov.entity.CityEntity;
 import ru.chupikov.form.CityForm;
 import ru.chupikov.utils.ImgTransformationUtils;
+import ru.chupikov.utils.mapper.CityMapper;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -28,11 +29,7 @@ public class CityCrudService {
      */
     @Transactional
     public void save(CityForm cityForm) throws IOException {
-        CityEntity city = CityEntity.builder()
-                .name(cityForm.getName())
-                .description(cityForm.getDescription())
-                .places(cityForm.getPlaces())
-                .build();
+        CityEntity city = CityMapper.formToEntity(cityForm);
         if (cityForm.getPhoto().getSize() == 0)
             city.setPhoto(ImgTransformationUtils.getInstance().getByteEmptyPicture());
         else
@@ -60,12 +57,8 @@ public class CityCrudService {
     public void update(CityForm cityForm) throws IOException {
         Optional<CityEntity> city = cityRepository.findById(cityForm.getId());
         if (city.isPresent()) {
-            CityEntity updatedCity = CityEntity.builder()
-                    .id(cityForm.getId())
-                    .name(cityForm.getName())
-                    .description(cityForm.getDescription())
-                    .places(cityForm.getPlaces())
-                    .build();
+            CityEntity updatedCity = CityMapper.formToEntity(cityForm);
+            updatedCity.setId(cityForm.getId());
             if (cityForm.getPhoto().getSize() == 0)
                 updatedCity.setPhoto(city.get().getPhoto());
             else

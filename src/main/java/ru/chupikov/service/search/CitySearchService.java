@@ -6,8 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.chupikov.dao.CityRepository;
 import ru.chupikov.entity.CityEntity;
+import ru.chupikov.dto.CityModel;
+import ru.chupikov.utils.mapper.CityMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Сервис с операциями поиска для городов
@@ -29,14 +32,15 @@ public class CitySearchService {
     }
 
     /**
-     * Метод поиска города по ID
+     * Метод поиска города по ID. Переводим доменную модель в канальную
      *
      * @param id ID города
-     * @return Сущность города
+     * @return канальная модель города
      */
     @Transactional(readOnly = true)
-    public CityEntity findById(Long id) {
-        return cityRepository.findById(id).orElse(null);
+    public CityModel findById(Long id) {
+        Optional<CityEntity> cityEntity = cityRepository.findById(id);
+        return cityEntity.map(CityMapper::entityToModel).orElse(null);
     }
 
 }

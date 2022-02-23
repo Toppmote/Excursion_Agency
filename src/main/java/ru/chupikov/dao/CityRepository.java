@@ -9,4 +9,7 @@ import ru.chupikov.entity.CityEntity;
  */
 @Repository
 public interface CityRepository extends JpaRepository<CityEntity, Long> {
+
+    CityEntity findByName(String name);
+
 }

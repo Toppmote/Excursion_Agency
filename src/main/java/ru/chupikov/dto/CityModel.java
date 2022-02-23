@@ -17,7 +17,7 @@ public class CityModel {
     /**
      * ID города
      */
-    private long id;
+    private Long id;
 
     /**
      * Наименование города

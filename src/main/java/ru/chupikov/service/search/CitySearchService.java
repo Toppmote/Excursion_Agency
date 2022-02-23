@@ -50,4 +50,7 @@ public class CitySearchService {
         return cityEntity.map(CityMapper::entityToModel).orElse(null);
     }
 
+    public CityModel findByName(String name) {
+        return CityMapper.entityToModel(cityRepository.findByName(name));
+    }
 }

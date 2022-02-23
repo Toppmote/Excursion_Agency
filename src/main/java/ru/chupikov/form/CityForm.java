@@ -1,14 +1,12 @@
 package ru.chupikov.form;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Форма регистрации нового города
  */
-@Getter
-@Setter
+@Data
 public class CityForm {
 
     /**

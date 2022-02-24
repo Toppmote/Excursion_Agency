@@ -22,14 +22,13 @@ public class GuideCrudController {
      * Метод обработки запроса на сохранение нового экскурсовода
      *
      * @param guideForm  данные о новом экскурсоводе
-     * @param photoGuide фотография экскурсовода
      * @return редирект на страницу экскурсоводов
      */
     @PostMapping("/add_guide")
-    public RedirectView addCity(@ModelAttribute GuideForm guideForm, @RequestParam("photoGuide") MultipartFile photoGuide) {
+    public RedirectView addCity(@ModelAttribute GuideForm guideForm) {
         log.info("[POST - /add_guide]\tEntered addCity method");
         try {
-            guideForm.setPhoto(photoGuide);
+            //guideForm.setPhoto(photoGuide);
             guideCrudService.save(guideForm);
         } catch (Exception e) {
             e.printStackTrace();

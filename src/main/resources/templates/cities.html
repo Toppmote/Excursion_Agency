@@ -44,6 +44,12 @@
     </section>
     <div class="album py-5 bg-light">
         <div class="container">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Поиск города</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" id="findCityInput">
+            </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col city_card" th:id="${'city_' + city.id}" th:each="city : ${cities}">
                     <div class="card shadow-sm">

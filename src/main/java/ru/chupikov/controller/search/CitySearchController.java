@@ -1,11 +1,12 @@
 package ru.chupikov.controller.search;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import ru.chupikov.dto.CityModel;
 import ru.chupikov.form.CityForm;
 import ru.chupikov.service.search.CitySearchService;
@@ -46,12 +47,37 @@ public class CitySearchController {
      * @return страница города
      */
     @GetMapping("/cities/{id}")
-    public String loadCitiesDetailsPage(@PathVariable Long id, Model model) {
+    public String loadCityDetailsPage(@PathVariable Long id, Model model) {
         log.info("[GET - /cities/" + id + "]\tEntered loadCitiesDetailsPage method");
         model.addAttribute("city", citySearchService.findById(id));
         model.addAttribute("cityForm", new CityForm());
         log.info("[GET - /cities/" + id + "]\tLoading city_details page");
         return "city_details";
+    }
+
+    /**
+     * Метод обработки запроса на поиск городов по фрагменту имени
+     *
+     * @param nameFragmentJSON JSON с фрагментом имени
+     * @return список найденных городов
+     */
+    @PostMapping("/cities/find")
+    @ResponseBody
+    public List<CityModel> findCitiesByStringContaining(@RequestBody String nameFragmentJSON) {
+        log.info("[POST - /cities/find]\tEntered findCitiesByStringContaining method");
+        try {
+            String nameFragment = new ObjectMapper()
+                    .readValue(nameFragmentJSON, ObjectNode.class)
+                    .get("text")
+                    .textValue();
+            List<CityModel> foundCities = citySearchService.findByNameContaining(nameFragment);
+            log.info("[POST - /cities/find]\tReturning found cities by fragment " + nameFragment);
+            return foundCities;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

@@ -3,6 +3,9 @@ $(document).ready(function () {
     //Форма добавления города
     let $cityForm = $("#cityForm");
 
+    //Форма ввода для поиска городов
+    let $cityFindInput = $("#findCityInput");
+
     //Отправка формы добавления города
     $cityForm.on('submit', function (e) {
         e.preventDefault();
@@ -32,6 +35,34 @@ $(document).ready(function () {
             $("#city_" + id).remove();
         });
     });
+
+    //Поиск города
+    $cityFindInput.on('change', function (e) {
+        e.preventDefault();
+        let inputData = JSON.stringify({
+            "text" : $cityFindInput.val()
+        });
+        $.ajax({
+            type: 'POST',
+            url: '/cities/find',
+            data: inputData,
+            processData: false,
+            contentType: 'application/json',
+            dataType: "json"
+        }).done(function (response) {
+            hideCitiesCards();
+            for (let i = 0; i < response.length; i++) {
+                $("#city_" + response[i].id).show();
+            }
+        });
+    });
+
+    //Скрыть все карточки городов
+    function hideCitiesCards() {
+        $(".city_card").each(function () {
+            $(this).hide();
+        });
+    }
 
     //Отобразить город
     function showNewCity(city) {

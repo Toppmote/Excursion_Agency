@@ -29,7 +29,7 @@ public class CitySearchService {
      * @return список найденных городов, отсортированных по имени
      */
     @Transactional(readOnly = true)
-    public List<CityModel> findAll(){
+    public List<CityModel> findAll() {
         log.info("[CitySearchService]\tEntered findAll method");
         List<CityEntity> cityEntities = cityRepository.findAll(Sort.by("name"));
         log.info("[CitySearchService]\tReturning list of cities");
@@ -50,7 +50,29 @@ public class CitySearchService {
         return cityEntity.map(CityMapper::entityToModel).orElse(null);
     }
 
+    /**
+     * Метод поиска города по имени
+     *
+     * @param name имя города
+     * @return модель найденного города
+     */
+    @Transactional(readOnly = true)
     public CityModel findByName(String name) {
+        log.info("[CitySearchService]\tEntered findByName method");
+        CityEntity city = cityRepository.findByName(name);
+        if (city == null) {
+            log.info("[CitySearchService]\tReturning null");
+            return null;
+        }
+        log.info("[CitySearchService]\tReturning found city model");
         return CityMapper.entityToModel(cityRepository.findByName(name));
+    }
+
+    @Transactional(readOnly = true)
+    public List<CityModel> findByNameContaining(String nameFragment) {
+        log.info("[CitySearchService]\tEntered findByNameContaining method");
+        List<CityEntity> foundCities = cityRepository.findByNameIgnoreCaseContaining(nameFragment);
+        log.info("[CitySearchService]\tfindByNameContaining method done");
+        return CityMapper.entityListToModel(foundCities);
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +64,7 @@ public class CitySearchController {
      */
     @PostMapping("/cities/find")
     @ResponseBody
-    public List<CityModel> findCitiesByStringContaining(@RequestBody String nameFragmentJSON) {
+    public ResponseEntity<?> findCitiesByStringContaining(@RequestBody String nameFragmentJSON) {
         log.info("[POST - /cities/find]\tEntered findCitiesByStringContaining method");
         try {
             String nameFragment = new ObjectMapper()
@@ -72,7 +73,7 @@ public class CitySearchController {
                     .textValue();
             List<CityModel> foundCities = citySearchService.findByNameContaining(nameFragment);
             log.info("[POST - /cities/find]\tReturning found cities by fragment " + nameFragment);
-            return foundCities;
+            return ResponseEntity.ok(foundCities);
         }
         catch (Exception e) {
             e.printStackTrace();

@@ -37,7 +37,7 @@ $(document).ready(function () {
     });
 
     //Поиск города
-    $cityFindInput.on('change', function (e) {
+    $cityFindInput.on('input', function (e) {
         e.preventDefault();
         let inputData = JSON.stringify({
             "text" : $cityFindInput.val()

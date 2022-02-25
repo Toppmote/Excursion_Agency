@@ -31,8 +31,6 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             url: "/delete_city_from_page/" + id
-        }).done(function () {
-            $("#city_" + id).remove();
         });
     });
 

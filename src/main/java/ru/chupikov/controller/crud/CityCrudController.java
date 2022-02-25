@@ -34,8 +34,8 @@ public class CityCrudController {
     /**
      * Метод обработки запроса на сохранение нового города
      *
-     * @param cityForm  данные о новом городе
-     * @return редирект на страницу городов
+     * @param cityForm данные о новом городе
+     * @return объект со статусом ответа на запрос и передаваемыми данными от сервера
      */
     @PostMapping("/add_city")
     @ResponseBody
@@ -46,7 +46,7 @@ public class CityCrudController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        log.info("[POST - /add_city]\tRedirecting to /cities page");
+        log.info("[POST - /add_city]\tNew city added successfully");
         return ResponseEntity.ok(citySearchService.findByName(cityForm.getName()));
     }
 
@@ -97,13 +97,6 @@ public class CityCrudController {
         }
         log.info("[POST - /update_city/" + id + "]\tRedirecting to city_details page");
         return new RedirectView("/cities/" + id);
-    }
-
-    @Data
-    @AllArgsConstructor
-    private static class CityResponse {
-        private String status;
-        private List<CityModel> cities;
     }
 
 }

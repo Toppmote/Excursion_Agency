@@ -60,7 +60,7 @@ public class CitySearchController {
      * Метод обработки запроса на поиск городов по фрагменту имени
      *
      * @param nameFragmentJSON JSON с фрагментом имени
-     * @return список найденных городов
+     * @return объект со статусом ответа на запрос и передаваемыми данными от сервера(список найденных городов)
      */
     @PostMapping("/cities/find")
     @ResponseBody
@@ -74,8 +74,7 @@ public class CitySearchController {
             List<CityModel> foundCities = citySearchService.findByNameContaining(nameFragment);
             log.info("[POST - /cities/find]\tReturning found cities by fragment " + nameFragment);
             return ResponseEntity.ok(foundCities);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

@@ -1,22 +1,14 @@
 package ru.chupikov.controller.crud;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
-import ru.chupikov.dto.CityModel;
 import ru.chupikov.form.CityForm;
 import ru.chupikov.service.crud.CityCrudService;
 import ru.chupikov.service.search.CitySearchService;
-import ru.chupikov.utils.ImgTransformationUtils;
-import ru.chupikov.utils.mapper.CityMapper;
-
-import java.util.List;
 
 /**
  * Контроллер для Crud операций, связанных с городами
